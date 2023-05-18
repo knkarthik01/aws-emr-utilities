@@ -6,6 +6,7 @@ import urllib.request,json
 import ssl
 import boto3
 
+# You can use this command to generate self-signed cert for testing and replace in line 28: openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem
 #hostName = "ec2-XX-XX-XX-XX.compute-1.amazonaws.com"
 hostName = "0.0.0.0"
 serverPort = 9977
