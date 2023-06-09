@@ -76,10 +76,12 @@ https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-ssh-tunnel.html
 ![Executor logs via Pre-signed URL](images/SHS_Exec_logs.png)
 
 
-***Optional***
 
-Instructions to setup EMR Serverless self-managed spark history server per Application:
-========================================================================================
+Instructions to setup EMR Serverless self-managed spark history server per Application on EMR on EC2:
+======================================================================================================
+
+Each job within an EMR Serverless application has a seperate Spark UI. Customers who use long-running hadoop/EMR on EC2 clusters are used to single Spark UI to debug/troubleshoot all jobs on the cluster. 
+By following these instructions, you would be able to launch one self-managed spark history server hosted on single master EMR on EC2 cluster which will host all jobs launched within a EMR Serverles application (Similar to EMR on EC2 long running clusters).
 
 Step 1:
 =======
@@ -96,9 +98,11 @@ Step 2:
 Publish the custom image to your ECR Repository created in previous step.
 Make sure your architecture matches with the application created (for eg. x86 vs arm64 for Graviton)
 
-Important Links:
+*Important Links:*
 https://aws.amazon.com/blogs/big-data/add-your-own-libraries-and-application-dependencies-to-spark-and-hive-on-amazon-emr-serverless-with-custom-images/
+
 https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
+
 https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/docker-custom-images-steps.html
 
 Step 3:
