@@ -86,9 +86,10 @@ Step 1:
 Modify spark-defaults.conf in your custom image to point to your S3 Consolidated bucket at EMR Serverless Application level.
 
 for example:
-
+```
 spark.eventLog.dir               s3://<your_bucket>/spark/serverlesslogs/application1/
 spark.history.fs.logDirectory    s3://<your_bucket>/spark/serverlesslogs/application1/
+```
 
 Step 2:
 =======
@@ -109,6 +110,7 @@ Note: Make sure your ECR Repository has access policy setup, so your EMR App can
 
 Sample Policy:
 ==============
+```
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -129,6 +131,7 @@ Sample Policy:
     }
   ]
 }
+```
 
 Step 4:
 =======
@@ -142,10 +145,11 @@ Create EMR on EC2 (Single master) cluster similar to below:
 Modify spark-defaults.conf to point to your S3 consolidated path used in the image and change custom log URL to reflect your environment.
 
 Example:
+```
 spark.eventLog.dir               s3://<your_bucket>/spark/serverlesslogs/application1/
 spark.history.fs.logDirectory    s3://<your_bucket>/spark/serverlesslogs/application1/
 spark.history.custom.executor.log.url       https://<your_host_name_ip>:9977/spark/logs/applications/<REPLACE WITH YOUR EMR-S APPLICATION ID>/jobs/{{APP_ID}}/{{CONTAINER_ID}}/{{FILE_NAME}}.gz
-
+```
 Additional links:
 https://github.com/knkarthik01/aws-emr-utilities/tree/main/utilities/self-managed-spark-history-server-emr
 
@@ -154,7 +158,7 @@ Step 6:
 =======
 
 Restart spark history server.
-
+```
 sudo systemctl restart spark-history-server.service
-
+```
 Now, all EMR Serverless jobs under single application will be accessible from single self-managed spark history server.
