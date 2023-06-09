@@ -77,8 +77,8 @@ https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-ssh-tunnel.html
 
 
 
-Instructions to setup EMR Serverless self-managed spark history server per Application on EMR on EC2:
-======================================================================================================
+## Instructions to setup EMR Serverless self-managed spark history server per Application on EMR on EC2:
+
 
 Each job within an EMR Serverless application has a seperate Spark UI. Customers who use long-running hadoop/EMR on EC2 clusters are used to single Spark UI to debug/troubleshoot all jobs on the cluster. 
 By following these instructions, you would be able to launch one self-managed spark history server hosted on single master EMR on EC2 cluster which will host all jobs launched within a EMR Serverles application (Similar to EMR on EC2 long running clusters).
