@@ -83,8 +83,8 @@ Instructions to setup EMR Serverless self-managed spark history server per Appli
 Each job within an EMR Serverless application has a seperate Spark UI. Customers who use long-running hadoop/EMR on EC2 clusters are used to single Spark UI to debug/troubleshoot all jobs on the cluster. 
 By following these instructions, you would be able to launch one self-managed spark history server hosted on single master EMR on EC2 cluster which will host all jobs launched within a EMR Serverles application (Similar to EMR on EC2 long running clusters).
 
-Step 1:
-=======
+**Step 1:**
+
 Modify spark-defaults.conf in your custom image to point to your S3 Consolidated bucket at EMR Serverless Application level.
 
 for example:
@@ -93,8 +93,8 @@ spark.eventLog.dir               s3://<your_bucket>/spark/serverlesslogs/applica
 spark.history.fs.logDirectory    s3://<your_bucket>/spark/serverlesslogs/application1/
 ```
 
-Step 2:
-=======
+**Step 2:**
+
 Publish the custom image to your ECR Repository created in previous step.
 Make sure your architecture matches with the application created (for eg. x86 vs arm64 for Graviton)
 
@@ -105,10 +105,9 @@ https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.htm
 
 https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/docker-custom-images-steps.html
 
-Step 3:
-=======
-Create or Modify your EMR Serverless application to utilize custom image URI:
+**Step 3:**
 
+Create or Modify your EMR Serverless application to utilize custom image URI:
 
 Note: Make sure your ECR Repository has access policy setup, so your EMR App can access custom image created:
 
@@ -137,14 +136,14 @@ Sample Policy:
 }
 ```
 
-Step 4:
-=======
+**Step 4:**
+
 Run sample jobs on EMR Serverless application (modified).
 Now Spark Eventlogs will be written to your S3 bucket specified in the image.
 All other executor/container logs will still be written to your S3 path specified in Additional Settings (S3 bucket).
 
-Step 5:
-========
+**Step 5:**
+
 Create EMR on EC2 (Single master) cluster similar to below:
 Modify spark-defaults.conf to point to your S3 consolidated path used in the image and change custom log URL to reflect your environment.
 
@@ -158,8 +157,7 @@ Additional links:
 https://github.com/knkarthik01/aws-emr-utilities/tree/main/utilities/self-managed-spark-history-server-emr
 
 
-Step 6:
-=======
+**Step 6:**
 
 Restart spark history server.
 ```
