@@ -9,7 +9,7 @@ a. The first script (`load_iceberg_full_table.py`) initializes your Iceberg data
 
 b. The second script generates a list of data files from DynamoDB's manifest files for incremental exports. This list aids in updating the table created by the first script.
 
-c. The third script (`load_iceberg_incremental_table.py`) executes incremental updates on your target Iceberg data lake table and sets the stage for future updates.
+c. The third script (`load_iceberg_incremental_data.py`) executes incremental updates on your target Iceberg data lake table and sets the stage for future updates.
 Together, these scripts offer a comprehensive solution for managing full and incremental data loads into Iceberg tables.
 
 ## Description
