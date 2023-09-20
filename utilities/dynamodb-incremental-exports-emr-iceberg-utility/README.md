@@ -76,12 +76,28 @@ Details about how the full table load script functions.
 
 [load_iceberg_full_table.py](https://github.com/knkarthik01/aws-emr-utilities/blob/main/utilities/dynamodb-incremental-exports-emr-iceberg-utility/code/load_iceberg_full_table.py)
 
-### How Incremental Table Load Works (`load_incremental.py`)
+### How Incremental Table Load Works (`load_iceberg_incremental_data.py`)
 Details about how the incremental table load script functions.
-#### Code Snippet
-```python
-# (Insert the Python code for load_incremental.py)
-```
+
+1. Expects 4 Parameters
+    a.  DynamoDB incremental extract path.
+    b.  User-provided schema for the JSON table
+    c.  Full Iceberg table name and Incremental Iceberg table name (Script expects both Iceberg full table name and Incremental table name to have     you decide on naming conventions you want to persist in your metastore)
+    d.  Partition key and Sort key (option) to create merge queries dynamically.
+
+2. Read Data into DataFrame
+    It reads this incremental data file into a Spark DataFrame.
+
+3. Apply Defined Schema to Temporary View
+   Using the user-provided schema, a query is constructed to create a temporary SQL view (`tmp_stage_table`) of the DataFrame with the specified       columns and data types
+
+4. Apply Write Operation to the Final Table using Merge statements (Iceberg)
+    The script then merges this incremental DataFrame into the existing Iceberg table (dev.db.<YOUR_FULL_TABLE_NAME>), taking care of updates,         deletes, and inserts as specified.
+
+
+#### Code Path
+
+[load_iceberg_incremental_data.py](https://github.com/knkarthik01/aws-emr-utilities/blob/main/utilities/dynamodb-incremental-exports-emr-iceberg-utility/code/load_iceberg_incremental_data.py)
 
 ## Full End-to-End Testing
 ### Usage
