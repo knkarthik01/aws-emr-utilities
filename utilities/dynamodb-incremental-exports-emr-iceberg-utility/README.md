@@ -53,7 +53,7 @@ user_schema = {
 ```
 
 ## Scripts Details
-### How Full Table Load Works (`load_iceberg_full_table.py`)
+### 1. How Full Table Load Works (`load_iceberg_full_table.py`)
 Details about how the full table load script functions.
 
 1. Expects 3 arguments
@@ -76,7 +76,10 @@ Details about how the full table load script functions.
 
 [load_iceberg_full_table.py](https://github.com/knkarthik01/aws-emr-utilities/blob/main/utilities/dynamodb-incremental-exports-emr-iceberg-utility/code/load_iceberg_full_table.py)
 
-### How Incremental Table Load Works (`load_iceberg_incremental_data.py`)
+### 2. How Full Table Load Works (`load_iceberg_full_table.py`)
+Generates a list of data files from DynamoDB's manifest files for incremental exports. This list aids in updating the table created by the first script, script also include incmrental submit optionally, so you can execute this end-to-end by passing these arguments without having to separate incremental script.
+
+### 3. How Incremental Table Load Works (`load_iceberg_incremental_data.py`)
 Details about how the incremental table load script functions.
 
 1. Expects 4 Parameters
@@ -99,24 +102,6 @@ Details about how the incremental table load script functions.
 
 [load_iceberg_incremental_data.py](https://github.com/knkarthik01/aws-emr-utilities/blob/main/utilities/dynamodb-incremental-exports-emr-iceberg-utility/code/load_iceberg_incremental_data.py)
 
-## Full End-to-End Testing
-### Usage
-Save the script as `run_ingest.py` and make it executable.
-
-
-Install AWS CLI and configure credentials.
-```bash
-aws configure
-```
-
-Run the script.
-```bash
-python3 run_ingest.py
-```
-### Test Script
-```python
-# (Insert the Python code for the test script)
-```
 
 ## Note
 Ensure your PySpark environment is set up properly, and spark-submit is available in the terminal.
