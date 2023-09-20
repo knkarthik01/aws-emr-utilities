@@ -53,10 +53,8 @@ Details about how the incremental table load script functions.
 
 ## Full End-to-End Testing
 ### Usage
-Save the script as `run_ingest.sh` and make it executable.
-```bash
-chmod +x run_ingest.sh
-```
+Save the script as `run_ingest.py` and make it executable.
+
 
 Install AWS CLI and configure credentials.
 ```bash
@@ -65,7 +63,7 @@ aws configure
 
 Run the script.
 ```bash
-./run_ingest.sh
+python3 run_ingest.py
 ```
 ### Test Script
 ```python
