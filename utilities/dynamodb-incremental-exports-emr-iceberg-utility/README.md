@@ -73,7 +73,7 @@ Details about how the full table load script functions.
 
 
 #### Code Path
-load_iceberg_full_table.py[https://github.com/knkarthik01/aws-emr-utilities/blob/main/utilities/dynamodb-incremental-exports-emr-iceberg-utility/code/load_iceberg_full_table.py]
+[https://github.com/knkarthik01/aws-emr-utilities/blob/main/utilities/dynamodb-incremental-exports-emr-iceberg-utility/code/load_iceberg_full_table.py](load_iceberg_full_table.py)
 
 ### How Incremental Table Load Works (`load_incremental.py`)
 Details about how the incremental table load script functions.
