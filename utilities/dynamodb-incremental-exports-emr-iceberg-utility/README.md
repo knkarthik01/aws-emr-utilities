@@ -18,7 +18,7 @@ Scripts to perform full table and incremental data loads from DynamoDB extracts.
 ## Usage
 ### Full Table Load
 ```bash
-spark-submit load_full_table.py [full_data_file_path] [full_iceberg_table_name]
+spark-submit load_iceberg_full_table.py [full_data_file_path] [full_iceberg_table_name]
 ```
 
 ### Generate File List using DynamoDB Manifests (Optional: Spark Submit Iceberg Job)
@@ -28,7 +28,7 @@ python3 generate_file_list_from_ddb_manifest.py --extractId [DYNAMODB-INCREMENTA
 
 ### Incremental Load
 ```bash
-spark-submit load_incremental.py [incremental_data_file_path] [delta_iceberg_table_name] [full_iceberg_table_name]
+spark-submit load_iceberg_incremental_data.py [incremental_data_file_path] [delta_iceberg_table_name] [full_iceberg_table_name]
 ```
 
 ## Dependencies
@@ -53,8 +53,25 @@ user_schema = {
 ```
 
 ## Scripts Details
-### How Full Table Load Works (`load_full_table.py`)
+### How Full Table Load Works (`load_iceberg_full_table.py`)
 Details about how the full table load script functions.
+
+1. Expects 3 arguments
+    a. S3 full data file path (For example: s3://{bucket_name}/{prefix}/{export_id}/). 
+    It assumes you've provided the full S3 path as an argument. No metadata file is needed in the case of a full load, because this is one-time activity.
+    b. Table Name to be created in Glue/Hive Metastore in iceberg format.
+    c. User provided schema for target table in the script.
+
+2. Read Data into DataFrame
+    It reads the JSON data file into a Spark DataFrame.
+
+3. Apply Defined Schema to Temporary View
+    Using the user-provided schema, a query is constructed to create a temporary SQL view (`tmp_full_table`) of the DataFrame with the specified        columns and data types.
+
+4. Apply Write Operation to the Target Table (Iceberg)
+    The script then writes the DataFrame to the Iceberg table, effectively loading the full table.
+
+
 #### Code Snippet
 ```python
 # (Insert the Python code for load_full_table.py)
