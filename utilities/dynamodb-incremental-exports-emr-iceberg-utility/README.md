@@ -3,8 +3,14 @@
 
 ## Summary
 
-Utility scripts for data ingestion into Iceberg tables using PySpark and AWS S3. As part of this utility, we include 3 scripts to get started with ingesting DynamoDB incremental exports on S3 into Iceberg data lake tables on AWS Glue/Hive Metastore using Amazon EMR. First script will help you load your full data export from DynamoDB into iceberg data lake table on S3, Second script will be to generate list of data files using manifest files from DynamoDB Incremental exports, which will then be used for incremental updates on full load table loaded in previous script and in third script, you will be able to run incremental updates on your target iceberg data lake table and continuously update future updates using this script.
-Includes scripts for full table loads (`load_iceberg_full_table.py`) and incremental data updates (`load_iceberg_incremental_table.py`).
+Utility scripts for ingesting data into Iceberg tables via PySpark and AWS S3 are provided in this package. It contains three key scripts to facilitate the ingestion of incremental exports from DynamoDB on S3 into Iceberg tables hosted on AWS Glue or Hive Metastore, utilizing Amazon EMR.
+
+a. The first script (`load_iceberg_full_table.py`) initializes your Iceberg data lake table on S3 with a full data export from DynamoDB.
+
+b. The second script generates a list of data files from DynamoDB's manifest files for incremental exports. This list aids in updating the table created by the first script.
+
+c. The third script executes incremental updates on your target Iceberg data lake table and sets the stage for future updates.
+Together, these scripts offer a comprehensive solution for managing full and incremental data loads into Iceberg tables.
 
 ## Description
 Scripts to perform full table and incremental data loads from DynamoDB extracts.
