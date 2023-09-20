@@ -2,6 +2,7 @@
 # DynamoDB Incremental Exports EMR Spark Iceberg Utility
 
 ## Summary
+
 Utility scripts for data ingestion into Iceberg tables using PySpark and AWS S3. Includes scripts for full table loads (`load_iceberg_full_table.py`) and incremental data updates (`load_iceberg_incremental_table.py`).
 ---
 ## Description
