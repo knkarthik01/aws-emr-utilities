@@ -76,8 +76,13 @@ Details about how the full table load script functions.
 
 [load_iceberg_full_table.py](https://github.com/knkarthik01/aws-emr-utilities/blob/main/utilities/dynamodb-incremental-exports-emr-iceberg-utility/code/load_iceberg_full_table.py)
 
-### 2. How Full Table Load Works (`load_iceberg_full_table.py`)
+### 2. Generating Data File List for Incremental Load (`generate_file_list_from_ddb_manifest.py`)
 Generates a list of data files from DynamoDB's manifest files for incremental exports. This list aids in updating the table created by the first script, script also include incmrental submit optionally, so you can execute this end-to-end by passing these arguments without having to separate incremental script.
+
+#### Code Path
+
+[generate_file_list_from_ddb_manifest.py](https://github.com/knkarthik01/aws-emr-utilities/blob/main/utilities/dynamodb-incremental-exports-emr-iceberg-utility/code/generate_file_list_from_ddb_manifest.py)
+
 
 ### 3. How Incremental Table Load Works (`load_iceberg_incremental_data.py`)
 Details about how the incremental table load script functions.
