@@ -7,7 +7,7 @@ Utility scripts for ingesting data into Iceberg tables via PySpark and AWS S3 ar
 
 a. The first script (`load_iceberg_full_table.py`) initializes your Iceberg data lake table on S3 with a full data export from DynamoDB.
 
-b. The second script generates a list of data files from DynamoDB's manifest files for incremental exports. This list aids in updating the table created by the first script.
+b. The second script ( `generate_file_list_from_ddb_manifest.py` )generates a list of data files from DynamoDB's manifest files for incremental exports. This list aids in updating the table created by the first script.
 
 c. The third script (`load_iceberg_incremental_data.py`) executes incremental updates on your target Iceberg data lake table and sets the stage for future updates.
 Together, these scripts offer a comprehensive solution for managing full and incremental data loads into Iceberg tables.
