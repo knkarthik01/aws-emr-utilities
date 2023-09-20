@@ -7,7 +7,7 @@ Utility scripts for ingesting data into Iceberg tables via PySpark and AWS S3 ar
 
 a. The first script (`load_iceberg_full_table.py`) initializes your Iceberg data lake table on S3 with a full data export from DynamoDB.
 
-b. The second script ( `generate_file_list_from_ddb_manifest.py` ) generates a list of data files from DynamoDB's manifest files for incremental exports. This list aids in updating the table created by the first script and .
+b. The second script ( `generate_file_list_from_ddb_manifest.py` ) generates a list of data files from DynamoDB's manifest files for incremental exports. This list aids in updating the table created by the first script, script also include incmrental submit optionally, so you can execute this end-to-end by passing these arguments without having to separate incremental script.
 
 c. The third script (`load_iceberg_incremental_data.py`) executes incremental updates on your target Iceberg data lake table and sets the stage for future updates.
 Together, these scripts offer a comprehensive solution for managing full and incremental data loads into Iceberg tables.
@@ -33,11 +33,13 @@ spark-submit load_incremental.py [incremental_data_file_path] [delta_iceberg_tab
 
 ## Dependencies
 * AWS CLI
-* PySpark (Iceberg enabled Spark Cluster)
 * Amazon EMR Serverless Application or Amazon EMR on EC2 cluster
+* PySpark (Iceberg enabled Spark Cluster)
 
 ## User Schema Definition
 Define the `user_schema` dictionary in each script to specify the schema of the data.
+In this package, rather than using default struct schema provided by DynamoDB exports, we are enforcing schema within the script and dynamically parsing based on this input. 
+
 ### Example Schema
 ```python
 user_schema = {
